@@ -257,9 +257,9 @@ def gradio_audio_view(chatbot, audio_input):
         audio_message = "无音频"
     else:
         audio_message = audio_to_text(audio_input)
-        
+
     chatbot[-1][0] = audio_message
-    
+
     user_message = ""
     if audio_message == "无音频":
         user_message += "请你将下面的句子修饰后输出，不要包含额外的文字，句子:'欢迎与我对话，我将用语音回答您'"
@@ -272,8 +272,8 @@ def gradio_audio_view(chatbot, audio_input):
 
     if user_message == "":
         user_message = "请你将下面的句子修饰后输出，不要包含额外的文字，句子:'请问您有什么想了解的，我将尽力为您服务'"
-    
-    
+
+
     answer = get_answer(user_message, chatbot)
     bot_response = ""
 
@@ -284,7 +284,7 @@ def gradio_audio_view(chatbot, audio_input):
             # 获取每个块的数据
             chunk_content = (chunk.choices[0].delta.content or "")
             bot_response += chunk_content
-            
+
         chatbot[-1][1] = (
             audio_generate(
                 text=bot_response,
@@ -366,7 +366,7 @@ def gradio_audio_view(chatbot, audio_input):
             # 获取每个块的数据
             chunk_content = (chunk.choices[0].delta.content or "")
             bot_response += chunk_content
-            
+
         chatbot[-1][1] = (
             audio_generate(
                 text=bot_response,
